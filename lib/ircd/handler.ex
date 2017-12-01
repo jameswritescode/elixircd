@@ -1,4 +1,6 @@
 defmodule IRCd.Handler do
+  @moduledoc false
+
   require Logger
 
   @rpl [
@@ -9,7 +11,7 @@ defmodule IRCd.Handler do
   ]
 
   def process({:NICK, args}, user) do
-    user = %IRCd.User{user|host: IRCd.User.hostmask(user), nick: List.first(args), uuid: UUID.uuid1}
+    user = %IRCd.User{user | host: IRCd.User.hostmask(user), nick: List.first(args), uuid: UUID.uuid1}
 
     GenServer.cast(IRCd.Server, {:register_user, user})
 
@@ -19,7 +21,7 @@ defmodule IRCd.Handler do
   # TODO: `host` support needs to be implemented
   # TODO: 002, 003, 004
   def process({:USER, [username, _host, _, name]}, user) do
-    user = %IRCd.User{user|user: username, name: name}
+    user = %IRCd.User{user | user: username, name: name}
 
     GenServer.cast(IRCd.Server, {:update_user, user})
 

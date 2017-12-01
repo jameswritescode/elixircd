@@ -1,10 +1,12 @@
 defmodule IRCd.Match do
+  @moduledoc false
+
   def parse(line) do
     string = String.trim(to_string(line))
 
-    [command|rest] = String.split(string, " ", global: false)
+    [command | rest] = String.split(string, " ", global: false)
     string = Enum.join(rest, " ")
-    [string|final] = String.split(string, ":", global: false)
+    [string | final] = String.split(string, ":", global: false)
     args = string
            |> String.trim
            |> String.split(" ", global: false)

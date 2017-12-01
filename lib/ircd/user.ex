@@ -1,4 +1,6 @@
 defmodule IRCd.User do
+  @moduledoc false
+
   use GenServer
 
   require Logger
@@ -23,7 +25,7 @@ defmodule IRCd.User do
       {:error, _} -> to_string(ip_string)
     end
 
-    {:noreply, %IRCd.User{state|host: host, ip: ip_string, port: port, socket: socket}}
+    {:noreply, %IRCd.User{state | host: host, ip: ip_string, port: port, socket: socket}}
   end
 
   def handle_info({:tcp, _socket, data}, state) do
