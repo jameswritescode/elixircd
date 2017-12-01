@@ -11,7 +11,7 @@ defmodule IRCd.Handler do
   ]
 
   def process({:NICK, args}, user) do
-    user = %IRCd.User{user | host: IRCd.User.hostmask(user), nick: List.first(args), uuid: UUID.uuid1}
+    user = %IRCd.User{user | mask: IRCd.User.hostmask(user), nick: List.first(args), uuid: UUID.uuid1}
 
     GenServer.cast(IRCd.Server, {:register_user, user})
 
