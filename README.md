@@ -8,5 +8,5 @@ up this README.
 # Run
 
 ```
-$ mix run --no-halt
+$ elixir --detached -S mix run --no-halt
 ```
