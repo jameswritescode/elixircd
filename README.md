@@ -8,5 +8,5 @@ up this README.
 # Run
 
 ```
-$ iex -S mix
+$ mix run --no-halt
 ```
